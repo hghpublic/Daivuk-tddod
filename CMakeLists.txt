@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0.0)
+cmake_minimum_required(VERSION 3.30.0)
 
 # Define LINUX
 if (UNIX AND NOT APPLE)
@@ -47,11 +47,14 @@ find_package(OpenGL REQUIRED)
 list(APPEND includes PUBLIC ${OPENGL_INCLUDE_DIR})
 list(APPEND libs ${OPENGL_LIBRARIES})
 
-# SDL2
+# SDL3
+set(BUILD_SHARED_LIBS OFF)
+set(SDL_TEST_LIBRARY OFF)
+set(SDL_STATIC ON)
 set(HAVE_LIBC ON)
-add_subdirectory(./thirdparty/SDL-mirror/)
-list(APPEND libs SDL2-static)
-list(APPEND includes PUBLIC ./thirdparty/SDL-mirror/include/)
+add_subdirectory(./thirdparty/SDL/)
+list(APPEND libs SDL3-static)
+list(APPEND includes PUBLIC ./thirdparty/SDL/include/)
 
 # gl3w
 list(APPEND includes PUBLIC ./thirdparty/gl3w/include/)

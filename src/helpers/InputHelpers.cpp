@@ -1,5 +1,5 @@
-#include <SDL_keycode.h>
-#include <SDL_mouse.h>
+#include <SDL3/SDL_keycode.h>
+#include <SDL3/SDL_mouse.h>
 
 #include "tags.h"
 
@@ -35,7 +35,7 @@ namespace Input
 
         switch (key)
         {
-        case SDLK_u: inputs.upgradeKey = true;
+        case SDLK_U: inputs.upgradeKey = true;
         }
     }
 
@@ -45,7 +45,7 @@ namespace Input
 
         switch (key)
         {
-        case SDLK_u: inputs.upgradeKey = false;
+        case SDLK_U: inputs.upgradeKey = false;
         }
     }
 };
