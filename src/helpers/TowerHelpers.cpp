@@ -89,34 +89,34 @@ static void shootCannonLvl3(Registry &registry, Entity target, Entity from)
 
 static void upgradeGunLvl3(Registry &registry, Entity entity)
 {
-    registry.accommodate<Color>(entity, TOWER_LEVEL3_COLOR);
-    registry.accommodate<Name>(entity, "Gun Turret 3");
-    registry.accommodate<Targeter>(entity, (uint8_t)(TargetMask::GROUND | TargetMask::AIR), 210.0f / 60.0f + 1.0f, 0.25f, shootGunLvl3);
+    registry.emplace_or_replace<Color>(entity, TOWER_LEVEL3_COLOR);
+    registry.emplace_or_replace<Name>(entity, "Gun Turret 3");
+    registry.emplace_or_replace<Targeter>(entity, (uint8_t)(TargetMask::GROUND | TargetMask::AIR), 210.0f / 60.0f + 1.0f, 0.25f, shootGunLvl3);
     registry.reset<Upgradable>(entity);
 }
 
 static void upgradeGunLvl2(Registry &registry, Entity entity)
 {
-    registry.accommodate<Color>(entity, TOWER_LEVEL2_COLOR);
-    registry.accommodate<Name>(entity, "Gun Turret 2 - \"U\" upgrade $400");
-    registry.accommodate<Targeter>(entity, (uint8_t)(TargetMask::GROUND | TargetMask::AIR), 210.0f / 60.0f + 0.5f, 0.5f, shootGunLvl2);
-    registry.accommodate<Upgradable>(entity, (float)GUN_TOWER_LVL3_PRICE, upgradeGunLvl3);
+    registry.emplace_or_replace<Color>(entity, TOWER_LEVEL2_COLOR);
+    registry.emplace_or_replace<Name>(entity, "Gun Turret 2 - \"U\" upgrade $400");
+    registry.emplace_or_replace<Targeter>(entity, (uint8_t)(TargetMask::GROUND | TargetMask::AIR), 210.0f / 60.0f + 0.5f, 0.5f, shootGunLvl2);
+    registry.emplace_or_replace<Upgradable>(entity, (float)GUN_TOWER_LVL3_PRICE, upgradeGunLvl3);
 }
 
 static void upgradeCannonLvl3(Registry &registry, Entity entity)
 {
-    registry.accommodate<Color>(entity, TOWER_LEVEL3_COLOR);
-    registry.accommodate<Name>(entity, "Cannon Turret 3");
-    registry.accommodate<Targeter>(entity, (uint8_t)(TargetMask::GROUND), 210.0f / 60.0f + 1.0f, 0.75f, shootCannonLvl3);
+    registry.emplace_or_replace<Color>(entity, TOWER_LEVEL3_COLOR);
+    registry.emplace_or_replace<Name>(entity, "Cannon Turret 3");
+    registry.emplace_or_replace<Targeter>(entity, (uint8_t)(TargetMask::GROUND), 210.0f / 60.0f + 1.0f, 0.75f, shootCannonLvl3);
     registry.reset<Upgradable>(entity);
 }
 
 static void upgradeCannonLvl2(Registry &registry, Entity entity)
 {
-    registry.accommodate<Color>(entity, TOWER_LEVEL2_COLOR);
-    registry.accommodate<Name>(entity, "Cannon Turret 2 - \"U\" upgrade $1000");
-    registry.accommodate<Targeter>(entity, (uint8_t)(TargetMask::GROUND), 210.0f / 60.0f + 0.5f, 1.0f, shootCannonLvl2);
-    registry.accommodate<Upgradable>(entity, (float)GUN_TOWER_LVL3_PRICE, upgradeCannonLvl3);
+    registry.emplace_or_replace<Color>(entity, TOWER_LEVEL2_COLOR);
+    registry.emplace_or_replace<Name>(entity, "Cannon Turret 2 - \"U\" upgrade $1000");
+    registry.emplace_or_replace<Targeter>(entity, (uint8_t)(TargetMask::GROUND), 210.0f / 60.0f + 0.5f, 1.0f, shootCannonLvl2);
+    registry.emplace_or_replace<Upgradable>(entity, (float)GUN_TOWER_LVL3_PRICE, upgradeCannonLvl3);
 }
 
 namespace Tower

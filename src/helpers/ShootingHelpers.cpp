@@ -180,7 +180,7 @@ namespace Shooting
             const auto &resources = registry.get<Resources>(registry.attachee<Tag::Resources>());
             Audio::playSound(registry, resources.popSound);
         }
-        registry.accommodate<Dead>(target);
+        registry.emplace_or_replace<Dead>(target);
     }
 
     void damage(Registry &registry, Entity target, float damage)
@@ -224,7 +224,7 @@ namespace Shooting
                 auto distSqr = dx * dx + dy * dy;
                 if (distSqr <= rangeSqr)
                 {
-                    registry.accommodate<SpeedNerf>(entity, 2.333f, speedMult);
+                    registry.emplace_or_replace<SpeedNerf>(entity, 2.333f, speedMult);
                 }
             }
         });

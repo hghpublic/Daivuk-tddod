@@ -16,7 +16,7 @@ void updateCashThresholdButtonToggleSystem(Registry &registry)
     {
         if (playerBank.amount >= cashThresholdButtonToggler.threshold)
         {
-            registry.accommodate<Clickable>(entity, Color{ 0.5f, 0.5f, 0.4f, 1 }, button.onClick);
+            registry.emplace_or_replace<Clickable>(entity, Color{ 0.5f, 0.5f, 0.4f, 1 }, button.onClick);
         }
         else
         {

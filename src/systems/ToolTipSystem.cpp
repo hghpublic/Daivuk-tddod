@@ -19,9 +19,9 @@ void updateToolTipSystem(Registry &registry)
         float w = (float)text.size() * TEXT_ADVANCE;
         float align = std::max(inputs.worldMouse.x + 0.5f + w - 21.0f, 0.0f) / w;
 
-        registry.accommodate<Position>(toolTipEntity, Position{ inputs.worldMouse.x + 0.5f, inputs.worldMouse.y + 0.5f });
-        registry.accommodate<Color>(toolTipEntity, Color{ 0.75f, 0.75f, 0.85f, 1.0f });
-        registry.accommodate<TextRenderer>(toolTipEntity, text, Color{ 0, 0.125f, 0.25f, 0.75f }, align);
+        registry.emplace_or_replace<Position>(toolTipEntity, Position{ inputs.worldMouse.x + 0.5f, inputs.worldMouse.y + 0.5f });
+        registry.emplace_or_replace<Color>(toolTipEntity, Color{ 0.75f, 0.75f, 0.85f, 1.0f });
+        registry.emplace_or_replace<TextRenderer>(toolTipEntity, text, Color{ 0, 0.125f, 0.25f, 0.75f }, align);
     }
     else
     {

@@ -34,7 +34,7 @@ void updatePlaceSystem(Registry &registry)
             else
             {
                 // Update his position component
-                registry.accommodate<Position>(entity, position);
+                registry.emplace_or_replace<Position>(entity, position);
             }
         }
 
