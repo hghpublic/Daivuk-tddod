@@ -9,9 +9,9 @@
 
 void updateToolTipSystem(Registry &registry)
 {
-    auto &inputs = registry.get<Inputs>(registry.attachee<Tag::Inputs>());
-    auto &uiContext = registry.get<UIContext>(registry.attachee<Tag::UIContext>());
-    auto toolTipEntity = registry.attachee<Tag::Tooltip>();
+    auto &inputs = registry.get<Inputs>(registry.view<Tag::Inputs>().front());
+    auto &uiContext = registry.get<UIContext>(registry.view<Tag::UIContext>().front());
+    auto toolTipEntity = registry.view<Tag::Tooltip>().front();
 
     if (uiContext.hover != NULL_ENTITY)
     {

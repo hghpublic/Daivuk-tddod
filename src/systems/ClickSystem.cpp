@@ -7,8 +7,8 @@
 
 void updateClickSystem(Registry &registry)
 {
-    auto &inputs = registry.get<Inputs>(registry.attachee<Tag::Inputs>());
-    auto &uiContext = registry.get<UIContext>(registry.attachee<Tag::UIContext>());
+    auto &inputs = registry.get<Inputs>(registry.view<Tag::Inputs>().front());
+    auto &uiContext = registry.get<UIContext>(registry.view<Tag::UIContext>().front());
 
     if (inputs.leftButtonState == InputState::JustDown)
     {

@@ -9,7 +9,7 @@
 
 void updateButtonStateSystem(Registry &registry)
 {
-    auto &uiContext = registry.get<UIContext>(registry.attachee<Tag::UIContext>());
+    auto &uiContext = registry.get<UIContext>(registry.view<Tag::UIContext>().front());
 
     registry.view<Button, Color>().each([&uiContext, &registry](auto entity, const Button &button, Color &color)
     {

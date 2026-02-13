@@ -10,7 +10,7 @@
 
 void updateCashThresholdButtonToggleSystem(Registry &registry)
 {
-    auto &playerBank = registry.get<Bank>(registry.attachee<Tag::Player>());
+    auto &playerBank = registry.get<Bank>(registry.view<Tag::Player>().front());
 
     registry.view<CashThresholdButtonToggler, Button, Color>().each([&registry, &playerBank](auto entity, const CashThresholdButtonToggler &cashThresholdButtonToggler, const Button &button, Color &color)
     {

@@ -10,7 +10,7 @@
 
 void updateTextRenderSystem(Registry &registry)
 {
-    Resources &resources = registry.get<Resources>(registry.attachee<Tag::Resources>());
+    Resources &resources = registry.get<Resources>(registry.view<Tag::Resources>().front());
 
     glBindTexture(GL_TEXTURE_2D, resources.fontTexture);
 

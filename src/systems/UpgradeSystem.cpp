@@ -8,8 +8,8 @@
 
 void updateUpgradeSystem(Registry &registry)
 {
-    auto &inputs = registry.get<Inputs>(registry.attachee<Tag::Inputs>());
-    auto &uiContext = registry.get<UIContext>(registry.attachee<Tag::UIContext>());
+    auto &inputs = registry.get<Inputs>(registry.view<Tag::Inputs>().front());
+    auto &uiContext = registry.get<UIContext>(registry.view<Tag::UIContext>().front());
 
     if (inputs.upgradeKeyState == InputState::JustDown &&
         uiContext.hover != NULL_ENTITY)
@@ -18,7 +18,7 @@ void updateUpgradeSystem(Registry &registry)
         {
             const auto &upgradable = registry.get<Upgradable>(uiContext.hover);
 
-            if (Money::withdraw(registry, registry.attachee<Tag::Player>(), (int)upgradable.cost))
+            if (Money::withdraw(registry, registry.view<Tag::Player>().front(), (int)upgradable.cost))
             {
                 upgradable.upgrade(registry, uiContext.hover);
                 inputs.upgradeKeyState = InputState::Down; // Consume input

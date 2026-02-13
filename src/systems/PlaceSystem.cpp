@@ -9,7 +9,7 @@
 
 void updatePlaceSystem(Registry &registry)
 {
-    const auto &inputs = registry.get<Inputs>(registry.attachee<Tag::Inputs>());
+    const auto &inputs = registry.get<Inputs>(registry.view<Tag::Inputs>().front());
 
     registry.view<Placer>().each([&registry, &inputs](auto entity, const Placer &placer)
     {

@@ -20,7 +20,7 @@ void updateEndWaveDelaySystem(Registry &registry, float dt)
         {
             registry.remove<EndWaveDelay>(entity);
 
-            auto wavesControllerEntity = registry.attachee<Tag::WavesController>();
+            auto wavesControllerEntity = registry.view<Tag::WavesController>().front();
             auto &wavesController = registry.get<WavesController>(wavesControllerEntity);
             auto nextWaveIndex = wavesController.currentWaveIndex + 1;
             if (nextWaveIndex >= WAVE_COUNT)

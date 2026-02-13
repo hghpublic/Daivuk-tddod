@@ -94,7 +94,7 @@ namespace Rendering
 
     void setTransform(Registry &registry, const float *matrix)
     {
-        Resources &resources = registry.get<Resources>(registry.attachee<Tag::Resources>());
+        Resources &resources = registry.get<Resources>(registry.view<Tag::Resources>().front());
         {
             glUseProgram(resources.programPC);
             auto uniform = glGetUniformLocation(resources.programPC, "ProjMtx");
@@ -145,7 +145,7 @@ namespace Rendering
 
     void prepareForPC(Registry &registry)
     {
-        Resources &resources = registry.get<Resources>(registry.attachee<Tag::Resources>());
+        Resources &resources = registry.get<Resources>(registry.view<Tag::Resources>().front());
 
         glDisable(GL_TEXTURE_2D);
         glUseProgram(resources.programPC);
@@ -156,7 +156,7 @@ namespace Rendering
 
     static void drawPC(Registry &registry, const VertexPC *pVertices, int count, GLenum mode)
     {
-        Resources &resources = registry.get<Resources>(registry.attachee<Tag::Resources>());
+        Resources &resources = registry.get<Resources>(registry.view<Tag::Resources>().front());
 
         glBindBuffer(GL_ARRAY_BUFFER, resources.vertexBuffer);
         glBufferData(GL_ARRAY_BUFFER, sizeof(VertexPC) * count, pVertices, GL_DYNAMIC_DRAW);
@@ -182,7 +182,7 @@ namespace Rendering
 
     void prepareForPTC(Registry &registry)
     {
-        Resources &resources = registry.get<Resources>(registry.attachee<Tag::Resources>());
+        Resources &resources = registry.get<Resources>(registry.view<Tag::Resources>().front());
 
         glEnable(GL_TEXTURE_2D);
         glActiveTexture(GL_TEXTURE0);
@@ -194,7 +194,7 @@ namespace Rendering
 
     static void drawPTC(Registry &registry, const VertexPTC *pVertices, int count, GLenum mode)
     {
-        Resources &resources = registry.get<Resources>(registry.attachee<Tag::Resources>());
+        Resources &resources = registry.get<Resources>(registry.view<Tag::Resources>().front());
 
         glBindBuffer(GL_ARRAY_BUFFER, resources.vertexBuffer);
         glBufferData(GL_ARRAY_BUFFER, sizeof(VertexPTC) * count, pVertices, GL_DYNAMIC_DRAW);

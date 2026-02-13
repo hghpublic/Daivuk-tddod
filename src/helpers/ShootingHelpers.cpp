@@ -46,7 +46,7 @@ static void onSlowBoltImpact(Registry &registry, Entity entity)
 
 static void onCannonBallImpact(Registry &registry, Entity entity)
 {
-    const auto &resources = registry.get<Resources>(registry.attachee<Tag::Resources>());
+    const auto &resources = registry.get<Resources>(registry.view<Tag::Resources>().front());
     Audio::playSound(registry, resources.explosionSound);
 
     auto impactPoint = registry.get<Position>(entity);
@@ -168,7 +168,7 @@ namespace Shooting
     void kill(Registry &registry, Entity target)
     {
         if (registry.all_of<Dead>(target)) return; // Don't kill twice
-        Money::transfer(registry, target, registry.attachee<Tag::Player>());
+        Money::transfer(registry, target, registry.view<Tag::Player>().front());
         if (registry.all_of<Position, ShapeRenderer, Size, Color>(target))
         {
             PFX::spawnParticlesFromShape(registry, 
@@ -177,7 +177,7 @@ namespace Shooting
                 registry.get<Size>(target), 
                 registry.get<Color>(target));
 
-            const auto &resources = registry.get<Resources>(registry.attachee<Tag::Resources>());
+            const auto &resources = registry.get<Resources>(registry.view<Tag::Resources>().front());
             Audio::playSound(registry, resources.popSound);
         }
         registry.emplace_or_replace<Dead>(target);

@@ -11,7 +11,7 @@
 
 void updateShapeRenderSystem(Registry &registry)
 {
-    Resources &resources = registry.get<Resources>(registry.attachee<Tag::Resources>());
+    Resources &resources = registry.get<Resources>(registry.view<Tag::Resources>().front());
 
     auto pVertices = resources.pPCVertices;
 

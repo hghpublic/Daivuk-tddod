@@ -16,7 +16,7 @@ namespace PFX
 {
     void spawnParticlesFromShape(Registry &registry, const Position &position, const ShapeRenderer &shapeRenderer, const Size &size, const Color &color)
     {
-        Resources &resources = registry.get<Resources>(registry.attachee<Tag::Resources>());
+        Resources &resources = registry.get<Resources>(registry.view<Tag::Resources>().front());
 
         auto pVertices = resources.pPCVertices;
         pVertices += shapeRenderer.drawShape(pVertices, position, size.w, size.h, color);

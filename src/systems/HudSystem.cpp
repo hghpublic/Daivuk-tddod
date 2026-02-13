@@ -8,11 +8,11 @@
 
 void updateHudSystem(Registry &registry)
 {
-    auto &hud = registry.get<Hud>(registry.attachee<Tag::Hud>());
+    auto &hud = registry.get<Hud>(registry.view<Tag::Hud>().front());
 
     {
         auto &textRenderer = registry.get<TextRenderer>(hud.currentWaveLabel);
-        auto wavesControllerEntity = registry.attachee<Tag::WavesController>();
+        auto wavesControllerEntity = registry.view<Tag::WavesController>().front();
         if (wavesControllerEntity != NULL_ENTITY)
         {
             auto &wavesController = registry.get<WavesController>(wavesControllerEntity);
@@ -24,7 +24,7 @@ void updateHudSystem(Registry &registry)
         }
     }
     {
-        auto &playerBank = registry.get<Bank>(registry.attachee<Tag::Player>());
+        auto &playerBank = registry.get<Bank>(registry.view<Tag::Player>().front());
         auto &textRenderer = registry.get<TextRenderer>(hud.cashLabel);
         textRenderer.text = "Cash: $" + std::to_string((int)playerBank.amount);
     }

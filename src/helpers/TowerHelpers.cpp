@@ -26,7 +26,7 @@ static void shootGunLvl1(Registry &registry, Entity target, Entity from)
     Shooting::createBullet(registry, registry.get<Position>(from), registry.get<Position>(target), { 0, 1, 0, 1 });
     Shooting::damage(registry, target, 10.0f);
 
-    const auto &resources = registry.get<Resources>(registry.attachee<Tag::Resources>());
+    const auto &resources = registry.get<Resources>(registry.view<Tag::Resources>().front());
     Audio::playSound(registry, resources.gunSound);
 }
 
@@ -36,7 +36,7 @@ static void shootGunLvl2(Registry &registry, Entity target, Entity from)
     Shooting::createBullet(registry, registry.get<Position>(from), registry.get<Position>(target), { 1, 1, 0, 1 });
     Shooting::damage(registry, target, 15.0f);
 
-    const auto &resources = registry.get<Resources>(registry.attachee<Tag::Resources>());
+    const auto &resources = registry.get<Resources>(registry.view<Tag::Resources>().front());
     Audio::playSound(registry, resources.gunSound);
 }
 
@@ -46,7 +46,7 @@ static void shootGunLvl3(Registry &registry, Entity target, Entity from)
     Shooting::createBullet(registry, registry.get<Position>(from), registry.get<Position>(target), { 1, 0.75f, 0.75f, 1 });
     Shooting::damage(registry, target, 17.5f);
 
-    const auto &resources = registry.get<Resources>(registry.attachee<Tag::Resources>());
+    const auto &resources = registry.get<Resources>(registry.view<Tag::Resources>().front());
     Audio::playSound(registry, resources.gunSound);
 }
 
@@ -54,7 +54,7 @@ static void shootSlowLvl1(Registry &registry, Entity target, Entity from)
 {
     Shooting::createSlowBolt(registry, registry.get<Position>(from), registry.get<Position>(target), TOWER_LEVEL1_COLOR);
 
-    const auto &resources = registry.get<Resources>(registry.attachee<Tag::Resources>());
+    const auto &resources = registry.get<Resources>(registry.view<Tag::Resources>().front());
     Audio::playSound(registry, resources.slowSound);
 }
 
@@ -67,7 +67,7 @@ static void shootCannonLvl1(Registry &registry, Entity target, Entity from)
 {
     Shooting::createCannonBall(registry, registry.get<Position>(from), registry.get<Position>(target), TOWER_LEVEL1_COLOR, 5.0f);
 
-    const auto &resources = registry.get<Resources>(registry.attachee<Tag::Resources>());
+    const auto &resources = registry.get<Resources>(registry.view<Tag::Resources>().front());
     Audio::playSound(registry, resources.cannonSound);
 }
 
@@ -75,7 +75,7 @@ static void shootCannonLvl2(Registry &registry, Entity target, Entity from)
 {
     Shooting::createCannonBall(registry, registry.get<Position>(from), registry.get<Position>(target), TOWER_LEVEL2_COLOR, 15.0f);
 
-    const auto &resources = registry.get<Resources>(registry.attachee<Tag::Resources>());
+    const auto &resources = registry.get<Resources>(registry.view<Tag::Resources>().front());
     Audio::playSound(registry, resources.cannonSound);
 }
 
@@ -83,7 +83,7 @@ static void shootCannonLvl3(Registry &registry, Entity target, Entity from)
 {
     Shooting::createCannonBall(registry, registry.get<Position>(from), registry.get<Position>(target), TOWER_LEVEL3_COLOR, 27.0f);
 
-    const auto &resources = registry.get<Resources>(registry.attachee<Tag::Resources>());
+    const auto &resources = registry.get<Resources>(registry.view<Tag::Resources>().front());
     Audio::playSound(registry, resources.cannonSound);
 }
 
@@ -136,7 +136,7 @@ namespace Tower
 
     void buyGunTurret(Registry &registry, const Position &position)
     {
-        if (!Money::withdraw(registry, registry.attachee<Tag::Player>(), GUN_TOWER_LVL1_PRICE)) return;
+        if (!Money::withdraw(registry, registry.view<Tag::Player>().front(), GUN_TOWER_LVL1_PRICE)) return;
 
         auto entity = registry.create();
 
@@ -154,7 +154,7 @@ namespace Tower
 
     void buySlowTurret(Registry &registry, const Position &position)
     {
-        if (!Money::withdraw(registry, registry.attachee<Tag::Player>(), SLOW_TOWER_LVL1_PRICE)) return;
+        if (!Money::withdraw(registry, registry.view<Tag::Player>().front(), SLOW_TOWER_LVL1_PRICE)) return;
 
         auto entity = registry.create();
 
@@ -171,7 +171,7 @@ namespace Tower
 
     void buyRocketTurret(Registry &registry, const Position &position)
     {
-        if (!Money::withdraw(registry, registry.attachee<Tag::Player>(),  ROCKET_TOWER_LVL1_PRICE)) return;
+        if (!Money::withdraw(registry, registry.view<Tag::Player>().front(),  ROCKET_TOWER_LVL1_PRICE)) return;
 
         auto entity = registry.create();
 
@@ -188,7 +188,7 @@ namespace Tower
 
     void buyCannonTurret(Registry &registry, const Position &position)
     {
-        if (!Money::withdraw(registry, registry.attachee<Tag::Player>(), CANNON_TOWER_LVL1_PRICE)) return;
+        if (!Money::withdraw(registry, registry.view<Tag::Player>().front(), CANNON_TOWER_LVL1_PRICE)) return;
 
         auto entity = registry.create();
 

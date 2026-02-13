@@ -22,7 +22,7 @@ static InputState updateInputState(bool raw, InputState prevState)
 
 void updateInputSystem(Registry &registry)
 {
-    auto &inputs = registry.get<Inputs>(registry.attachee<Tag::Inputs>());
+    auto &inputs = registry.get<Inputs>(registry.view<Tag::Inputs>().front());
 
     // Generate mouse world position from mouse position
     inputs.worldMouse.x = (inputs.mouse.x - ((float)WIDTH - MAP_WIDTH * ZOOM) / 2.0f) / ZOOM + 0.5f;

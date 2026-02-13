@@ -10,28 +10,28 @@ namespace Input
 {
     void onMouseButtonDown(Registry &registry, int button)
     {
-        auto &inputs = registry.get<Inputs>(registry.attachee<Tag::Inputs>());
+        auto &inputs = registry.get<Inputs>(registry.view<Tag::Inputs>().front());
         if (button == SDL_BUTTON_LEFT) inputs.leftButton = true;
         else if (button == SDL_BUTTON_RIGHT) inputs.rightButton = true;
     }
 
     void onMouseButtonUp(Registry &registry, int button)
     {
-        auto &inputs = registry.get<Inputs>(registry.attachee<Tag::Inputs>());
+        auto &inputs = registry.get<Inputs>(registry.view<Tag::Inputs>().front());
         if (button == SDL_BUTTON_LEFT) inputs.leftButton = false;
         else if (button == SDL_BUTTON_RIGHT) inputs.rightButton = false;
     }
 
     void onMouseMotion(Registry &registry, int x, int y)
     {
-        auto &inputs = registry.get<Inputs>(registry.attachee<Tag::Inputs>());
+        auto &inputs = registry.get<Inputs>(registry.view<Tag::Inputs>().front());
         inputs.mouse.x = (float)x;
         inputs.mouse.y = (float)y;
     }
 
     void onKeyDown(Registry &registry, int key)
     {
-        auto &inputs = registry.get<Inputs>(registry.attachee<Tag::Inputs>());
+        auto &inputs = registry.get<Inputs>(registry.view<Tag::Inputs>().front());
 
         switch (key)
         {
@@ -41,7 +41,7 @@ namespace Input
 
     void onKeyUp(Registry &registry, int key)
     {
-        auto &inputs = registry.get<Inputs>(registry.attachee<Tag::Inputs>());
+        auto &inputs = registry.get<Inputs>(registry.view<Tag::Inputs>().front());
 
         switch (key)
         {

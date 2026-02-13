@@ -21,7 +21,7 @@ namespace Waves
 
     void startWave(Registry &registry, int index)
     {
-        auto wavesControllerEntity  = registry.attachee<Tag::WavesController>();
+        auto wavesControllerEntity  = registry.view<Tag::WavesController>().front();
         auto &wavesController       = registry.get<WavesController>(wavesControllerEntity);
 
         registry.assign<EndWaveChecker>(wavesControllerEntity);
