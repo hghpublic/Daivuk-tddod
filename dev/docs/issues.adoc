@@ -1,0 +1,35 @@
+= Issues
+:toc:
+:sectnums: 
+
+== Issue 1
+available in version 3.3.0
+
+https://github.com/skypjack/entt/blob/0dfd2aa714e7bc6d457dd011091d37645dd76506/src/entt/entity/helper.hpp#L165
+
+Documentation for entt::tag? #419
+
+
+https://github.com/skypjack/entt/issues/419
+
+----
+build] /workspaces/Daivuk-tddod/src/tags.h:13:48: error: 'label' in namespace 'entt' does not name a template type
+[build]    13 | #define LABEL(__name__) using __name__ = entt::label<#__name__ ## _hs>
+[build]       |                                                ^~~~~
+[build] /workspaces/Daivuk-tddod/src/tags.h:22:5: note: in expansion of macro 'LABEL'
+[build]    22 |     LABEL(Inputs);
+[build]       |     ^~~~~
+[build] /workspaces/Daivuk-tddod/src/tags.h:13:48: error: 'label' in namespace 'entt' does not name a template type
+[build]    13 | #define LABEL(__name__) using __name__ = entt::label<#__name__ ## _hs>
+----
+
+----
+[build] /workspaces/Daivuk-tddod/src/game.cpp:128:49: error: 'tag_t' is not a member of 'entt'; did you mean 'tag'?
+[build]   128 |             registry.emplace<Tag::Player>(entt::tag_t{}, entity);
+----
+
+
+== Issue 2
+
+⬢orkspaces/Daivuk-tddod/build/tddod
+error: XDG_RUNTIME_DIR is invalid or not set in the environment.
