@@ -68,7 +68,7 @@ namespace Game
         // Load resources
         {
             auto entity = registry.create();
-            registry.emplace<Tag::Resources>(entt::tag_t{}, entity);
+            registry.emplace<Tag::Resources>(entity);
 
             Resources resources;
             resources.programPC = Rendering::createProgram(PC_VERT, PC_FRAG, {"Position", "Color"});
@@ -97,7 +97,7 @@ namespace Game
         // Hud elements
         {
             auto entity = registry.create();
-            registry.emplace<Tag::Hud>(entt::tag_t{}, entity);
+            registry.emplace<Tag::Hud>(entity);
 
             auto &hud = registry.emplace<Hud>(entity);
             hud.currentWaveLabel = UI::createLabel(registry, "", { 0, 0 }, Color{ 0.75f, 0.75f, 0.75f, 1 });
@@ -125,7 +125,7 @@ namespace Game
         // Player
         {
             auto entity = registry.create();
-            registry.emplace<Tag::Player>(entt::tag_t{}, entity);
+            registry.emplace<Tag::Player>(entity);
             registry.emplace<Bank>(entity, 150.0f);
             registry.emplace<Investor>(entity, 0.003f);
         }
@@ -133,20 +133,20 @@ namespace Game
         // Tool tip
         {
             auto entity = registry.create();
-            registry.emplace<Tag::Tooltip>(entt::tag_t{}, entity);
+            registry.emplace<Tag::Tooltip>(entity);
         }
 
         // UI Context
         {
             auto entity = registry.create();
-            registry.emplace<Tag::UIContext>(entt::tag_t{}, entity);
+            registry.emplace<Tag::UIContext>(entity);
             registry.emplace<UIContext>(entity, NULL_ENTITY, NULL_ENTITY);
         }
 
         // Inputs
         {
             auto entity = registry.create();
-            registry.emplace<Tag::Inputs>(entt::tag_t{}, entity);
+            registry.emplace<Tag::Inputs>(entity);
 
             Inputs inputs;
             memset(&inputs, 0, sizeof(Inputs));

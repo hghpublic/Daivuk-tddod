@@ -14,7 +14,7 @@ namespace Waves
     Entity createWavesController(Registry &registry)
     {
         auto entity = registry.create();
-        registry.emplace<Tag::WavesController>(entt::tag_t{}, entity);
+        registry.emplace<Tag::WavesController>(entity);
         registry.emplace<WavesController>(entity, 0, WAVE_COUNT, (Wave*)WAVES);
         return entity;
     }
