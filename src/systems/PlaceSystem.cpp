@@ -19,7 +19,7 @@ void updatePlaceSystem(Registry &registry)
             my < 0 || my >= MAP_HEIGHT)
         {
             // Invalid position
-            registry.reset<Position>(entity);
+            registry.remove<Position>(entity);
         }
         else
         {

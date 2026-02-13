@@ -20,7 +20,7 @@ void updateCashThresholdButtonToggleSystem(Registry &registry)
         }
         else
         {
-            registry.reset<Clickable>(entity);
+            registry.remove<Clickable>(entity);
             color = button.disabledColor;
         }
     });

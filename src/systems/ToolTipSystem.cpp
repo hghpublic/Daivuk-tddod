@@ -25,6 +25,6 @@ void updateToolTipSystem(Registry &registry)
     }
     else
     {
-        registry.reset<TextRenderer>(toolTipEntity);
+        registry.remove<TextRenderer>(toolTipEntity);
     }
 }

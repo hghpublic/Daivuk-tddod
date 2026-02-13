@@ -92,7 +92,7 @@ static void upgradeGunLvl3(Registry &registry, Entity entity)
     registry.emplace_or_replace<Color>(entity, TOWER_LEVEL3_COLOR);
     registry.emplace_or_replace<Name>(entity, "Gun Turret 3");
     registry.emplace_or_replace<Targeter>(entity, (uint8_t)(TargetMask::GROUND | TargetMask::AIR), 210.0f / 60.0f + 1.0f, 0.25f, shootGunLvl3);
-    registry.reset<Upgradable>(entity);
+    registry.remove<Upgradable>(entity);
 }
 
 static void upgradeGunLvl2(Registry &registry, Entity entity)
@@ -108,7 +108,7 @@ static void upgradeCannonLvl3(Registry &registry, Entity entity)
     registry.emplace_or_replace<Color>(entity, TOWER_LEVEL3_COLOR);
     registry.emplace_or_replace<Name>(entity, "Cannon Turret 3");
     registry.emplace_or_replace<Targeter>(entity, (uint8_t)(TargetMask::GROUND), 210.0f / 60.0f + 1.0f, 0.75f, shootCannonLvl3);
-    registry.reset<Upgradable>(entity);
+    registry.remove<Upgradable>(entity);
 }
 
 static void upgradeCannonLvl2(Registry &registry, Entity entity)
