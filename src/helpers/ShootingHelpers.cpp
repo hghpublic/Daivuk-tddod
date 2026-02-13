@@ -167,9 +167,9 @@ namespace Shooting
 
     void kill(Registry &registry, Entity target)
     {
-        if (registry.has<Dead>(target)) return; // Don't kill twice
+        if (registry.all_of<Dead>(target)) return; // Don't kill twice
         Money::transfer(registry, target, registry.attachee<Tag::Player>());
-        if (registry.has<Position, ShapeRenderer, Size, Color>(target))
+        if (registry.all_of<Position, ShapeRenderer, Size, Color>(target))
         {
             PFX::spawnParticlesFromShape(registry, 
                 registry.get<Position>(target), 
@@ -185,7 +185,7 @@ namespace Shooting
 
     void damage(Registry &registry, Entity target, float damage)
     {
-        if (registry.has<Health>(target))
+        if (registry.all_of<Health>(target))
         {
             auto &health = registry.get<Health>(target);
             health.amount -= damage;

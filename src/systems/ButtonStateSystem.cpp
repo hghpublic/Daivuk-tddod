@@ -13,7 +13,7 @@ void updateButtonStateSystem(Registry &registry)
 
     registry.view<Button, Color>().each([&uiContext, &registry](auto entity, const Button &button, Color &color)
     {
-        if (registry.has<Hoverable, Clickable>(entity))
+        if (registry.all_of<Hoverable, Clickable>(entity))
         {
             auto &clickable = registry.get<Clickable>(entity);
             auto &hoverable = registry.get<Hoverable>(entity);

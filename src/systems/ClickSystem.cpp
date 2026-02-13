@@ -18,7 +18,7 @@ void updateClickSystem(Registry &registry)
     {
         if (uiContext.down != NULL_ENTITY && 
             uiContext.down == uiContext.hover &&
-            registry.has<Clickable>(uiContext.down))
+            registry.all_of<Clickable>(uiContext.down))
         {
             auto &clickable = registry.get<Clickable>(uiContext.down);
             if (clickable.onClick) clickable.onClick(registry, uiContext.down);

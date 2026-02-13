@@ -15,7 +15,7 @@ void updatePositionAnimSystem(Registry &registry, float dt)
 
         if (anim >= positionAnim.duration)
         {
-            if (registry.has<PositionAnimCallback>(entity))
+            if (registry.all_of<PositionAnimCallback>(entity))
             {
                 registry.get<PositionAnimCallback>(entity).callback(registry, entity);
             }

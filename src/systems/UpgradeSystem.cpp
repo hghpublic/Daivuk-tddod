@@ -14,7 +14,7 @@ void updateUpgradeSystem(Registry &registry)
     if (inputs.upgradeKeyState == InputState::JustDown &&
         uiContext.hover != NULL_ENTITY)
     {
-        if (registry.has<Upgradable>(uiContext.hover))
+        if (registry.all_of<Upgradable>(uiContext.hover))
         {
             const auto &upgradable = registry.get<Upgradable>(uiContext.hover);
 
