@@ -7,8 +7,8 @@
 
 #include <entt/entt.hpp>
 
-using Registry = entt::DefaultRegistry;
-using Entity = Registry::entity_type;
+using Registry = entt::registry;
+using Entity = entt::entity;
 
 static const Entity NULL_ENTITY = entt::null;
 
