@@ -14,12 +14,15 @@ void updatePointRenderSystem(Registry &registry)
 
     auto pVertices = resources.pPCVertices;
 
+//FIXME
+#if 0
     registry.view<PointRenderer, Position, Color>().each([&pVertices](auto entity, const PointRenderer &pointRenderer, const Position &position, const Color &color)
     {
         pVertices->position = position;
         pVertices->color = color;
         ++pVertices;
     });
+#endif
 
     auto count = pVertices - resources.pPCVertices;
     if (count) Rendering::drawPoints(registry, resources.pPCVertices, count);

@@ -7,14 +7,16 @@
 #include "components/TargetScore.h"
 #include "components/Targeter.h"
 
-void updateTargetingSystem(Registry &registry, float dt)
+void updateTargetingSystem(Registry &registry, [[maybe_unused]] float dt)
 {
-    registry.view<Targeter, FindTarget, Position>().each([&registry, dt](auto entity, const Targeter &targeter, const FindTarget &findTarget, const Position &position)
+// FIXME
+#if 0
+    registry.view<Targeter, FindTarget, Position>().each([&registry](auto entity, const Targeter &targeter, [[maybe_unused]] const FindTarget &findTarget, const Position &position)
     {
         auto rangeSqr = targeter.range * targeter.range;
         auto score = 0.0f;
         auto targetEntity = NULL_ENTITY;
-        registry.view<Target, Position, TargetScore>().each([dt, &rangeSqr, &position, &targetEntity, &targeter, &score](auto entity, const Target &target, const Position &critterPosition, const TargetScore &targetScore)
+        registry.view<Target, Position, TargetScore>().each([&rangeSqr, &position, &targetEntity, &targeter, &score](auto entity, const Target &target, const Position &critterPosition, const TargetScore &targetScore)
         {
             if (target.mask & targeter.targetMask)
             {
@@ -33,8 +35,9 @@ void updateTargetingSystem(Registry &registry, float dt)
         {
             // Shoot at target
             registry.remove<FindTarget>(entity);
-            registry.emplace<Cooldown>(entity, targeter.cooldown);
-            targeter.shoot(registry, targetEntity, entity);
+            registry.emplace<Cooldown>(entity, Cooldown{targeter.cooldown});
+            (*targeter.shoot)(registry, targetEntity, entity);
         }
     });
+#endif
 }
