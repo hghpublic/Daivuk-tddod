@@ -14,8 +14,8 @@ namespace Waves
     Entity createWavesController(Registry &registry)
     {
         auto entity = registry.create();
-        registry.assign<Tag::WavesController>(entt::tag_t{}, entity);
-        registry.assign<WavesController>(entity, 0, WAVE_COUNT, (Wave*)WAVES);
+        registry.emplace<Tag::WavesController>(entt::tag_t{}, entity);
+        registry.emplace<WavesController>(entity, 0, WAVE_COUNT, (Wave*)WAVES);
         return entity;
     }
 
@@ -24,14 +24,14 @@ namespace Waves
         auto wavesControllerEntity  = registry.view<Tag::WavesController>().front();
         auto &wavesController       = registry.get<WavesController>(wavesControllerEntity);
 
-        registry.assign<EndWaveChecker>(wavesControllerEntity);
+        registry.emplace<EndWaveChecker>(wavesControllerEntity);
 
         // Spawner
         {
             auto entity = registry.create();
-            registry.assign<Wave>(entity, Wave{ wavesController.pWaves[wavesController.currentWaveIndex] });
-            registry.assign<Position>(entity, WAVE_START_POSITION);
-            registry.assign<Spawner>(entity, WAVE_START_TIME);
+            registry.emplace<Wave>(entity, Wave{ wavesController.pWaves[wavesController.currentWaveIndex] });
+            registry.emplace<Position>(entity, WAVE_START_POSITION);
+            registry.emplace<Spawner>(entity, WAVE_START_TIME);
         }
     }
 };

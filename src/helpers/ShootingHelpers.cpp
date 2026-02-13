@@ -35,12 +35,12 @@ static void onSlowBoltImpact(Registry &registry, Entity entity)
     // Impact fx
     {
         auto entity = registry.create();
-        registry.assign<Position>(entity, impactPoint);
-        registry.assign<DeathTimer>(entity, 0.4f);
-        registry.assign<Size>(entity, 0.5f);
-        registry.assign<ShapeRenderer>(entity, Shape::drawCircle);
-        registry.assign<SizePulseAnim>(entity, 0.0f, 25.0f, 0.15f, 0.5f);
-        registry.assign<Color>(entity, color);
+        registry.emplace<Position>(entity, impactPoint);
+        registry.emplace<DeathTimer>(entity, 0.4f);
+        registry.emplace<Size>(entity, 0.5f);
+        registry.emplace<ShapeRenderer>(entity, Shape::drawCircle);
+        registry.emplace<SizePulseAnim>(entity, 0.0f, 25.0f, 0.15f, 0.5f);
+        registry.emplace<Color>(entity, color);
     }
 }
 
@@ -60,12 +60,12 @@ static void onCannonBallImpact(Registry &registry, Entity entity)
     // Impact fx
     {
         auto entity = registry.create();
-        registry.assign<Position>(entity, impactPoint);
-        registry.assign<DeathTimer>(entity, 0.1f);
-        registry.assign<Size>(entity, 0.7f);
-        registry.assign<ShapeRenderer>(entity, Shape::drawCircle);
-        registry.assign<SizePulseAnim>(entity, 0.0f, 10.0f, 0.15f, 0.5f);
-        registry.assign<Color>(entity, Color{1, 1, 0, 1});
+        registry.emplace<Position>(entity, impactPoint);
+        registry.emplace<DeathTimer>(entity, 0.1f);
+        registry.emplace<Size>(entity, 0.7f);
+        registry.emplace<ShapeRenderer>(entity, Shape::drawCircle);
+        registry.emplace<SizePulseAnim>(entity, 0.0f, 10.0f, 0.15f, 0.5f);
+        registry.emplace<Color>(entity, Color{1, 1, 0, 1});
     }
 }
 
@@ -78,12 +78,12 @@ namespace Shooting
         float l = std::sqrtf(dx * dx + dy * dy);
 
         auto entity = registry.create();
-        registry.assign<Position>(entity, from);
-        registry.assign<PositionAnim>(entity, 0.0f, l / 10.0f, from, to);
-        registry.assign<ShapeRenderer>(entity, Shape::drawBox);
-        registry.assign<Size>(entity, 0.15f, 0.15f);
-        registry.assign<Color>(entity, Color{0, 1, 1, 1});
-        registry.assign<PositionAnimCallback>(entity, onSlowBoltImpact);
+        registry.emplace<Position>(entity, from);
+        registry.emplace<PositionAnim>(entity, 0.0f, l / 10.0f, from, to);
+        registry.emplace<ShapeRenderer>(entity, Shape::drawBox);
+        registry.emplace<Size>(entity, 0.15f, 0.15f);
+        registry.emplace<Color>(entity, Color{0, 1, 1, 1});
+        registry.emplace<PositionAnimCallback>(entity, onSlowBoltImpact);
     }
 
     void createCannonBall(Registry &registry, const Position &from, const Position &to, const Color &color, float damage)
@@ -93,13 +93,13 @@ namespace Shooting
         float l = std::sqrtf(dx * dx + dy * dy);
 
         auto entity = registry.create();
-        registry.assign<Position>(entity, from);
-        registry.assign<PositionAnim>(entity, 0.0f, l / 10.0f, from, to);
-        registry.assign<ShapeRenderer>(entity, Shape::drawBox);
-        registry.assign<Size>(entity, 0.15f, 0.15f);
-        registry.assign<Color>(entity, Color{1, 1, 1, 1});
-        registry.assign<PositionAnimCallback>(entity, onCannonBallImpact);
-        registry.assign<Damage>(entity, damage);
+        registry.emplace<Position>(entity, from);
+        registry.emplace<PositionAnim>(entity, 0.0f, l / 10.0f, from, to);
+        registry.emplace<ShapeRenderer>(entity, Shape::drawBox);
+        registry.emplace<Size>(entity, 0.15f, 0.15f);
+        registry.emplace<Color>(entity, Color{1, 1, 1, 1});
+        registry.emplace<PositionAnimCallback>(entity, onCannonBallImpact);
+        registry.emplace<Damage>(entity, damage);
     }
 
     void createBullet(Registry &registry, const Position &from, const Position &to, const Color &color)
@@ -116,12 +116,12 @@ namespace Shooting
         // Left line
         {
             auto entity = registry.create();
-            registry.assign<Position>(entity, from);
-            registry.assign<LineRenderer>(entity, to);
-            registry.assign<Color>(entity, Color{ 1, 1, 1, 1 });
-            registry.assign<ColorAnim>(entity, 0.0f, 0.5f, Color{ 0, 0.8f, 1, 0.5f }, Color{ 0, 0, 0, 0 });
-            registry.assign<DeathTimer>(entity, 0.5f);
-            registry.assign<LineAnim>(entity, 0.0f, 0.5f, from, to,
+            registry.emplace<Position>(entity, from);
+            registry.emplace<LineRenderer>(entity, to);
+            registry.emplace<Color>(entity, Color{ 1, 1, 1, 1 });
+            registry.emplace<ColorAnim>(entity, 0.0f, 0.5f, Color{ 0, 0.8f, 1, 0.5f }, Color{ 0, 0, 0, 0 });
+            registry.emplace<DeathTimer>(entity, 0.5f);
+            registry.emplace<LineAnim>(entity, 0.0f, 0.5f, from, to,
                 Position{ from.x - lx, from.y - ly },
                 Position{ to.x - lx, to.y - ly });
         }
@@ -129,12 +129,12 @@ namespace Shooting
         // Right line
         {
             auto entity = registry.create();
-            registry.assign<Position>(entity, from);
-            registry.assign<LineRenderer>(entity, to);
-            registry.assign<Color>(entity, Color{ 1, 1, 1, 1 });
-            registry.assign<ColorAnim>(entity, 0.0f, 0.5f, Color{ 0, 0.8f, 1, 0.5f }, Color{ 0, 0, 0, 0 });
-            registry.assign<DeathTimer>(entity, 0.5f);
-            registry.assign<LineAnim>(entity, 0.0f, 0.5f, from, to,
+            registry.emplace<Position>(entity, from);
+            registry.emplace<LineRenderer>(entity, to);
+            registry.emplace<Color>(entity, Color{ 1, 1, 1, 1 });
+            registry.emplace<ColorAnim>(entity, 0.0f, 0.5f, Color{ 0, 0.8f, 1, 0.5f }, Color{ 0, 0, 0, 0 });
+            registry.emplace<DeathTimer>(entity, 0.5f);
+            registry.emplace<LineAnim>(entity, 0.0f, 0.5f, from, to,
                 Position{ from.x + lx, from.y + ly },
                 Position{ to.x + lx, to.y + ly });
         }
@@ -142,22 +142,22 @@ namespace Shooting
         // Center line
         {
             auto entity = registry.create();
-            registry.assign<Position>(entity, from);
-            registry.assign<LineRenderer>(entity, to);
-            registry.assign<Color>(entity, Color{ 1, 1, 1, 1 });
-            registry.assign<ColorAnim>(entity, 0.0f, 0.25f, Color{ color.r, color.g, color.b, color.a * 0.75f }, Color{ 0, 0, 0, 0 });
-            registry.assign<DeathTimer>(entity, 0.25f);
+            registry.emplace<Position>(entity, from);
+            registry.emplace<LineRenderer>(entity, to);
+            registry.emplace<Color>(entity, Color{ 1, 1, 1, 1 });
+            registry.emplace<ColorAnim>(entity, 0.0f, 0.25f, Color{ color.r, color.g, color.b, color.a * 0.75f }, Color{ 0, 0, 0, 0 });
+            registry.emplace<DeathTimer>(entity, 0.25f);
         }
 
         // Bullet
         {
             const auto bulletSize = 0.5f;
             auto entity = registry.create();
-            registry.assign<Position>(entity, from);
-            registry.assign<LineRenderer>(entity, to);
-            registry.assign<Color>(entity, color);
-            registry.assign<DeathTimer>(entity, l / 30.0f);
-            registry.assign<LineAnim>(entity, 0.0f, l / 30.0f,
+            registry.emplace<Position>(entity, from);
+            registry.emplace<LineRenderer>(entity, to);
+            registry.emplace<Color>(entity, color);
+            registry.emplace<DeathTimer>(entity, l / 30.0f);
+            registry.emplace<LineAnim>(entity, 0.0f, l / 30.0f,
                 Position{ from.x, from.y },
                 Position{ from.x + dx * bulletSize, from.y + dy * bulletSize },
                 Position{ to.x - dx * bulletSize, to.y - dy * bulletSize },

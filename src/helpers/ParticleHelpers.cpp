@@ -39,12 +39,12 @@ namespace PFX
                 auto dx = p.x - position.x;
                 auto dy = p.y - position.y;
 
-                registry.assign<Position>(entity, p);
-                registry.assign<PointRenderer>(entity);
-                registry.assign<DeathTimer>(entity, 2.0f);
-                registry.assign<Color>(entity, Color{ 1,1,1,1 });
-                registry.assign<ColorAnim>(entity, 0.0f, 2.0f, vertex1.color, Color{ 0, 0, 0, 0 });
-                registry.assign<Physics>(entity, p.x, p.y, 0.0f,
+                registry.emplace<Position>(entity, p);
+                registry.emplace<PointRenderer>(entity);
+                registry.emplace<DeathTimer>(entity, 2.0f);
+                registry.emplace<Color>(entity, Color{ 1,1,1,1 });
+                registry.emplace<ColorAnim>(entity, 0.0f, 2.0f, vertex1.color, Color{ 0, 0, 0, 0 });
+                registry.emplace<Physics>(entity, p.x, p.y, 0.0f,
                     dx * 8.0f + (float)(rand() % 1000 - 500) / 3000.0f,
                     dy * 8.0f + (float)(rand() % 1000 - 500) / 3000.0f,
                     1.0f + (float)(rand() % 1000 - 500) / 3000.0f);

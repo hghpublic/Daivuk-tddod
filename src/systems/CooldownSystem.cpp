@@ -11,7 +11,7 @@ void updateCooldownSystem(Registry &registry, float dt)
         if (delay <= 0.0f)
         {
             registry.remove<Cooldown>(entity);
-            registry.assign<FindTarget>(entity);
+            registry.emplace<FindTarget>(entity);
             return;
         }
         cooldown.delay = delay;

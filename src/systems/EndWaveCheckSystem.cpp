@@ -14,6 +14,6 @@ void updateEndWaveCheckSystem(Registry &registry)
     registry.view<EndWaveChecker>().each([&registry](auto entity)
     {
         registry.remove<EndWaveChecker>(entity);
-        registry.assign<EndWaveDelay>(entity, END_WAVE_WAIT_TIME);
+        registry.emplace<EndWaveDelay>(entity, END_WAVE_WAIT_TIME);
     });
 }

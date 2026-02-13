@@ -18,6 +18,6 @@ namespace Audio
     void playSound(Registry &registry, const Sound &sound)
     {
         auto entity = registry.create();
-        registry.assign<SoundInstance>(entity, (int)sound.len, sound.buffer);
+        registry.emplace<SoundInstance>(entity, (int)sound.len, sound.buffer);
     }
 };

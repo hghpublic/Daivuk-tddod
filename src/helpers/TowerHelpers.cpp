@@ -141,11 +141,11 @@ namespace Tower
         }
 
         auto entity = registry.create();
-        registry.assign<Placer>(entity, place);
-        registry.assign<Color>(entity, Color{ 0, 1, 1, 0.75f });
-        registry.assign<Size>(entity, Size{ 0.45f, 0.45f });
-        registry.assign<ShapeRenderer>(entity, Shape::drawBox);
-        registry.assign<SizePulseAnim>(entity, 0.0f, 20.0f, 0.35f, 0.45f);
+        registry.emplace<Placer>(entity, place);
+        registry.emplace<Color>(entity, Color{ 0, 1, 1, 0.75f });
+        registry.emplace<Size>(entity, Size{ 0.45f, 0.45f });
+        registry.emplace<ShapeRenderer>(entity, Shape::drawBox);
+        registry.emplace<SizePulseAnim>(entity, 0.0f, 20.0f, 0.35f, 0.45f);
     }
 
     void buyGunTurret(Registry &registry, const Position &position)
@@ -154,16 +154,16 @@ namespace Tower
 
         auto entity = registry.create();
 
-        registry.assign<Position>(entity, position);
-        registry.assign<Size>(entity, TOWER_SIZE, TOWER_SIZE);
-        registry.assign<Color>(entity, TOWER_LEVEL1_COLOR);
-        registry.assign<TextRenderer>(entity, "G", Color{ 0, 0, 0, 0 }, 0.5f);
-        registry.assign<ShapeRenderer>(entity, Shape::drawBox);
-        registry.assign<Name>(entity, "Gun Turret 1 - \"U\" upgrade $200");
-        registry.assign<Targeter>(entity, (uint8_t)(TargetMask::GROUND | TargetMask::AIR), 210.0f / 60.0f, 1.0f, shootGunLvl1);
-        registry.assign<Upgradable>(entity, (float)GUN_TOWER_LVL2_PRICE, upgradeGunLvl2);
-        registry.assign<Hoverable>(entity);
-        registry.assign<FindTarget>(entity);
+        registry.emplace<Position>(entity, position);
+        registry.emplace<Size>(entity, TOWER_SIZE, TOWER_SIZE);
+        registry.emplace<Color>(entity, TOWER_LEVEL1_COLOR);
+        registry.emplace<TextRenderer>(entity, "G", Color{ 0, 0, 0, 0 }, 0.5f);
+        registry.emplace<ShapeRenderer>(entity, Shape::drawBox);
+        registry.emplace<Name>(entity, "Gun Turret 1 - \"U\" upgrade $200");
+        registry.emplace<Targeter>(entity, (uint8_t)(TargetMask::GROUND | TargetMask::AIR), 210.0f / 60.0f, 1.0f, shootGunLvl1);
+        registry.emplace<Upgradable>(entity, (float)GUN_TOWER_LVL2_PRICE, upgradeGunLvl2);
+        registry.emplace<Hoverable>(entity);
+        registry.emplace<FindTarget>(entity);
     }
 
     void buySlowTurret(Registry &registry, const Position &position)
@@ -172,15 +172,15 @@ namespace Tower
 
         auto entity = registry.create();
 
-        registry.assign<Position>(entity, position);
-        registry.assign<Size>(entity, TOWER_SIZE, TOWER_SIZE);
-        registry.assign<Color>(entity, TOWER_LEVEL1_COLOR);
-        registry.assign<TextRenderer>(entity, "S", Color{ 0, 0, 0, 0 }, 0.5f);
-        registry.assign<ShapeRenderer>(entity, Shape::drawBox);
-        registry.assign<Name>(entity, "Slow Turret");
-        registry.assign<Targeter>(entity, (uint8_t)(TargetMask::GROUND), 210.0f / 60.0f, 2.5f, shootSlowLvl1);
-        registry.assign<FindTarget>(entity);
-        registry.assign<Hoverable>(entity);
+        registry.emplace<Position>(entity, position);
+        registry.emplace<Size>(entity, TOWER_SIZE, TOWER_SIZE);
+        registry.emplace<Color>(entity, TOWER_LEVEL1_COLOR);
+        registry.emplace<TextRenderer>(entity, "S", Color{ 0, 0, 0, 0 }, 0.5f);
+        registry.emplace<ShapeRenderer>(entity, Shape::drawBox);
+        registry.emplace<Name>(entity, "Slow Turret");
+        registry.emplace<Targeter>(entity, (uint8_t)(TargetMask::GROUND), 210.0f / 60.0f, 2.5f, shootSlowLvl1);
+        registry.emplace<FindTarget>(entity);
+        registry.emplace<Hoverable>(entity);
     }
 
     void buyRocketTurret(Registry &registry, const Position &position)
@@ -189,15 +189,15 @@ namespace Tower
 
         auto entity = registry.create();
 
-        registry.assign<Position>(entity, position);
-        registry.assign<Size>(entity, TOWER_SIZE, TOWER_SIZE);
-        registry.assign<Color>(entity, TOWER_LEVEL1_COLOR);
-        registry.assign<TextRenderer>(entity, "R", Color{ 0, 0, 0, 0 }, 0.5f);
-        registry.assign<ShapeRenderer>(entity, Shape::drawBox);
-        registry.assign<Name>(entity, "Rocket Turret");
-        registry.assign<Targeter>(entity, TargetMask::AIR, 210.0f / 60.0f, 1.0f, shootRocketLvl1);
-        registry.assign<FindTarget>(entity);
-        registry.assign<Hoverable>(entity);
+        registry.emplace<Position>(entity, position);
+        registry.emplace<Size>(entity, TOWER_SIZE, TOWER_SIZE);
+        registry.emplace<Color>(entity, TOWER_LEVEL1_COLOR);
+        registry.emplace<TextRenderer>(entity, "R", Color{ 0, 0, 0, 0 }, 0.5f);
+        registry.emplace<ShapeRenderer>(entity, Shape::drawBox);
+        registry.emplace<Name>(entity, "Rocket Turret");
+        registry.emplace<Targeter>(entity, TargetMask::AIR, 210.0f / 60.0f, 1.0f, shootRocketLvl1);
+        registry.emplace<FindTarget>(entity);
+        registry.emplace<Hoverable>(entity);
     }
 
     void buyCannonTurret(Registry &registry, const Position &position)
@@ -206,15 +206,15 @@ namespace Tower
 
         auto entity = registry.create();
 
-        registry.assign<Position>(entity, position);
-        registry.assign<Size>(entity, TOWER_SIZE, TOWER_SIZE);
-        registry.assign<Color>(entity, TOWER_LEVEL1_COLOR);
-        registry.assign<TextRenderer>(entity, "C", Color{ 0, 0, 0, 0 }, 0.5f);
-        registry.assign<ShapeRenderer>(entity, Shape::drawBox);
-        registry.assign<Name>(entity, "Cannon Turret - \"U\" upgrade $500");
-        registry.assign<Targeter>(entity, TargetMask::GROUND, 210.0f / 60.0f, 1.0f, shootCannonLvl1);
-        registry.assign<FindTarget>(entity);
-        registry.assign<Hoverable>(entity);
-        registry.assign<Upgradable>(entity, (float)CANNON_TOWER_LVL2_PRICE, upgradeCannonLvl2);
+        registry.emplace<Position>(entity, position);
+        registry.emplace<Size>(entity, TOWER_SIZE, TOWER_SIZE);
+        registry.emplace<Color>(entity, TOWER_LEVEL1_COLOR);
+        registry.emplace<TextRenderer>(entity, "C", Color{ 0, 0, 0, 0 }, 0.5f);
+        registry.emplace<ShapeRenderer>(entity, Shape::drawBox);
+        registry.emplace<Name>(entity, "Cannon Turret - \"U\" upgrade $500");
+        registry.emplace<Targeter>(entity, TargetMask::GROUND, 210.0f / 60.0f, 1.0f, shootCannonLvl1);
+        registry.emplace<FindTarget>(entity);
+        registry.emplace<Hoverable>(entity);
+        registry.emplace<Upgradable>(entity, (float)CANNON_TOWER_LVL2_PRICE, upgradeCannonLvl2);
     }
 }

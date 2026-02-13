@@ -68,7 +68,7 @@ namespace Game
         // Load resources
         {
             auto entity = registry.create();
-            registry.assign<Tag::Resources>(entt::tag_t{}, entity);
+            registry.emplace<Tag::Resources>(entt::tag_t{}, entity);
 
             Resources resources;
             resources.programPC = Rendering::createProgram(PC_VERT, PC_FRAG, {"Position", "Color"});
@@ -82,7 +82,7 @@ namespace Game
             resources.slowSound = Audio::loadSound("assets/slow.wav");
             resources.cannonSound = Audio::loadSound("assets/cannon.wav");
             resources.explosionSound = Audio::loadSound("assets/explosion.wav");
-            registry.assign<Resources>(entity, resources);
+            registry.emplace<Resources>(entity, resources);
         }
 
         // Create map entity
@@ -91,15 +91,15 @@ namespace Game
             StaticLinesRenderer staticLineRenderer;
             staticLineRenderer.vertexBuffer = Rendering::createVertexBuffer(sizeof(MAP_VERTS), MAP_VERTS);
             staticLineRenderer.vertCount = (GLsizei)(sizeof(MAP_VERTS) / (sizeof(float) * 6));
-            registry.assign<StaticLinesRenderer>(entity, staticLineRenderer);
+            registry.emplace<StaticLinesRenderer>(entity, staticLineRenderer);
         }
 
         // Hud elements
         {
             auto entity = registry.create();
-            registry.assign<Tag::Hud>(entt::tag_t{}, entity);
+            registry.emplace<Tag::Hud>(entt::tag_t{}, entity);
 
-            auto &hud = registry.assign<Hud>(entity);
+            auto &hud = registry.emplace<Hud>(entity);
             hud.currentWaveLabel = UI::createLabel(registry, "", { 0, 0 }, Color{ 0.75f, 0.75f, 0.75f, 1 });
             hud.cashLabel = UI::createLabel(registry, "", { 16, 0 }, Color{ 1, 1, 0, 1 }, 1.0f);
 
@@ -125,32 +125,32 @@ namespace Game
         // Player
         {
             auto entity = registry.create();
-            registry.assign<Tag::Player>(entt::tag_t{}, entity);
-            registry.assign<Bank>(entity, 150.0f);
-            registry.assign<Investor>(entity, 0.003f);
+            registry.emplace<Tag::Player>(entt::tag_t{}, entity);
+            registry.emplace<Bank>(entity, 150.0f);
+            registry.emplace<Investor>(entity, 0.003f);
         }
 
         // Tool tip
         {
             auto entity = registry.create();
-            registry.assign<Tag::Tooltip>(entt::tag_t{}, entity);
+            registry.emplace<Tag::Tooltip>(entt::tag_t{}, entity);
         }
 
         // UI Context
         {
             auto entity = registry.create();
-            registry.assign<Tag::UIContext>(entt::tag_t{}, entity);
-            registry.assign<UIContext>(entity, NULL_ENTITY, NULL_ENTITY);
+            registry.emplace<Tag::UIContext>(entt::tag_t{}, entity);
+            registry.emplace<UIContext>(entity, NULL_ENTITY, NULL_ENTITY);
         }
 
         // Inputs
         {
             auto entity = registry.create();
-            registry.assign<Tag::Inputs>(entt::tag_t{}, entity);
+            registry.emplace<Tag::Inputs>(entt::tag_t{}, entity);
 
             Inputs inputs;
             memset(&inputs, 0, sizeof(Inputs));
-            registry.assign<Inputs>(entity, inputs);
+            registry.emplace<Inputs>(entity, inputs);
         }
     }
 
