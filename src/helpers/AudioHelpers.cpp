@@ -8,7 +8,7 @@ namespace Audio
     Sound loadSound(const char *filename)
     {
         Sound ret;
-        if (SDL_LoadWAV(filename, &ret.spec, &ret.buffer, &ret.len) == NULL)
+        if (SDL_LoadWAV(filename, &ret.spec, &ret.buffer, &ret.len) == false)
         {
             assert(false);
         }
