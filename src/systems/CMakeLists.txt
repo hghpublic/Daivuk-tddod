@@ -1,0 +1,36 @@
+target_sources(${target} PRIVATE
+    AudioMixerSystem.cpp
+    ButtonStateSystem.cpp
+    CashThresholdButtonToggleSystem.cpp
+    ClickSystem.cpp
+    ColorAnimSystem.cpp
+    CooldownSystem.cpp
+    DeathTimerSystem.cpp
+    EndWaveCheckSystem.cpp
+    EndWaveDelaySystem.cpp
+    HealthBarRenderSystem.cpp
+    HoverSystem.cpp
+    HudSystem.cpp
+    InputSystem.cpp
+    InvestmentSystem.cpp
+    KillSystem.cpp
+    LineAnimSystem.cpp
+    LineRenderSystem.cpp
+    PhysicSystem.cpp
+    PlaceSystem.cpp
+    PointRenderSystem.cpp
+    PositionAnimSystem.cpp
+    ResetSpeedSystem.cpp
+    ShapeRenderSystem.cpp
+    SizePulseAnimSystem.cpp
+    SpawnSystem.cpp
+    SpeedNerfSystem.cpp
+    StaticLinesRenderSystem.cpp
+    TargetingSystem.cpp
+    TextRenderSystem.cpp
+    ToolTipSystem.cpp
+    TravelerTargetScoreSystem.cpp
+    TravelSystem.cpp
+    UpgradeSystem.cpp
+)
+# target_include_directories(${target} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
