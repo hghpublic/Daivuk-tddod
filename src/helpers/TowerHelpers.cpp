@@ -124,7 +124,21 @@ namespace Tower
     void createPlacer(Registry &registry, PLACE_FN place)
     {
         // Clear previous, we only accept 1 placer
-        registry.destroy<Placer>();
+        // registry.destroy<Placer>();
+
+        auto view = registry.view<Placer>();
+        std::vector<Entity> toDestroy;
+        toDestroy.reserve(view.size());
+
+        for (auto entity : view)
+        {
+            toDestroy.push_back(entity);
+        }
+
+        for (auto entity : toDestroy)
+        {
+            registry.destroy(entity);
+        }
 
         auto entity = registry.create();
         registry.assign<Placer>(entity, place);
